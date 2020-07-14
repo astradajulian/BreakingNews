@@ -101,12 +101,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1939607224B4B34F001D21B1 /* Data Sources */ = {
+		1939607224B4B34F001D21B1 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				1939607C24B4C26A001D21B1 /* TopHeadlinesViewModel.swift */,
 			);
-			path = "Data Sources";
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		1939607324B4B383001D21B1 /* API */ = {
@@ -153,7 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				1939607324B4B383001D21B1 /* API */,
-				1939607224B4B34F001D21B1 /* Data Sources */,
+				1939607224B4B34F001D21B1 /* ViewModels */,
 				19B871F124B3CB63007F86ED /* Views */,
 				19B871C124B3C661007F86ED /* AppDelegate.swift */,
 				19B871CA24B3C661007F86ED /* Assets.xcassets */,
@@ -184,19 +184,19 @@
 		19B871F124B3CB63007F86ED /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				19B871F224B3CB6B007F86ED /* Sources */,
+				19B871F224B3CB6B007F86ED /* Top Headlines */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		19B871F224B3CB6B007F86ED /* Sources */ = {
+		19B871F224B3CB6B007F86ED /* Top Headlines */ = {
 			isa = PBXGroup;
 			children = (
 				19B871F324B3CB74007F86ED /* Cells */,
 				19B871C524B3C661007F86ED /* TopHeadlinesViewController.swift */,
 				19B871C724B3C661007F86ED /* TopHeadlines.storyboard */,
 			);
-			path = Sources;
+			path = "Top Headlines";
 			sourceTree = "<group>";
 		};
 		19B871F324B3CB74007F86ED /* Cells */ = {
