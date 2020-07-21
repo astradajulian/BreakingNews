@@ -23,34 +23,33 @@ class APIManager {
     // Singleton
     static let shared = APIManager()
     
-    static func getTopHeadlines(country: String) -> Observable<TopHeadlinesData> {
+    static func getTopHeadlines(country: String) -> Single<TopHeadlinesData> {
         return request(ApiRouter.getTopHeadlines(country: country))
     }
     
-    private static func request<T: Codable> (_ urlConvertible: URLRequestConvertible) -> Observable<T> {
+    private static func request<T: Codable> (_ urlConvertible: URLRequestConvertible) -> Single<T> {
         //Create an RxSwift observable, which will be the one to call the request when subscribed to
-        return Observable<T>.create { observer in
+        return Single<T>.create { single in
             //Trigger the HttpRequest using AlamoFire (AF)
             let request = AF.request(urlConvertible).responseDecodable { (response: DataResponse<T, AFError>) in
                 //Check the result from Alamofire's response and check if it's a success or a failure
                 switch response.result {
                 case .success(let value):
                     //Everything is fine, return the value in onNext
-                    observer.onNext(value)
-                    observer.onCompleted()
+                    single(.success(value))
                 case let .failure(error):
                     //Something went wrong, switch on the status code and return the error
                     switch response.response?.statusCode {
                     case 403:
-                        observer.onError(ApiError.forbidden)
+                        single(.error(ApiError.forbidden))
                     case 404:
-                        observer.onError(ApiError.notFound)
+                        single(.error(ApiError.notFound))
                     case 409:
-                        observer.onError(ApiError.conflict)
+                        single(.error(ApiError.conflict))
                     case 500:
-                        observer.onError(ApiError.internalServerError)
+                        single(.error(ApiError.internalServerError))
                     default:
-                        observer.onError(error)
+                        single(.error(error))
                     }
                 }
             }

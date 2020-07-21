@@ -25,11 +25,11 @@ class TopHeadlinesViewModel {
     private func fetchTopHeadlines(country: String) {
         loading.onNext(true)
         
-        APIManager.getTopHeadlines(country: country).observeOn(MainScheduler.instance).subscribe(onNext: {[unowned self] (data) in
+        APIManager.getTopHeadlines(country: country).observeOn(MainScheduler.instance).subscribe(onSuccess: {[unowned self] (data) in
             self.loading.onNext(false)
             
             self.headlineSources.onNext(data.articles)
-        }, onError: { (error) in
+        }, onError: {[unowned self] (error) in
             self.loading.onNext(false)
             
             self.error.onNext(error as? ApiError)
